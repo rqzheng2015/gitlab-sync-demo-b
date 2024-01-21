@@ -1,0 +1,12 @@
+{
+  "name": "gitlab-sync-demo-b",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && cp -r src/ dist/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,36 @@
+stages:
+  - build
+  - publish
+
+build:
+  stage: build
+  script:
+    - echo "Install dependencies"
+    - pnpm i
+    - echo "Building..."
+    - pnpm build
+  # main分支有改动的时候，执行build操作
+  # Execute the build operation when the main branch has changes
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      changes:
+        - 'src/**/*'
+      when: on_success
+  artifacts:
+    paths:
+      - dist/**/*
+
+publish:
+  stage: publish
+  needs: [ "build" ]
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      changes:
+        - 'src/**/*'
+      when: on_success
+  script:
+    # 在这里执行发布 npm 包操作，此处暂不实现，通过 ls 验证 build 产物是否存在
+    # We will execute the npm package publish action, but will not give the full code here,
+    # We will verify if the build bundles exist through "ls"
+    - echo "Publishing to npm now..."
+    - ls dist
