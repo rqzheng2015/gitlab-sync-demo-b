@@ -33,4 +33,5 @@ publish:
     # We will execute the npm package publish action, but will not give the full code here,
     # We will verify if the build bundles exist through "ls"
     - echo "Publishing to npm now..."
+    # - pnpm publish
     - ls dist
